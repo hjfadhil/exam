@@ -1,0 +1,83 @@
+<div style="font-family: Arial, Helvetica, sans-serif; direction: rtl; text-align: right;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarText">
+                <span class="badge badge-warning" style="cursor: pointer;" (click)="rf()" title="حذف الفلتر">حذف الفلتر</span>
+                <div class="d-flex flex-row bd-highlight mb-3">
+                    <div class="p-2 bd-highlight text-primary">تاريخ الامتحان:</div>
+                    <div class="p-2 bd-highlight">
+                        <input type="date" class="text-center form-control" name="examdate" id="examdate" [(ngModel)]="curdate" (change)="filterexam()">
+                    </div>
+                    <div class="p-2 bd-highlight">
+                        <button class="btn btn-sm btn-danger" (click)="rdf()">X</button>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-row bd-highlight mb-3">
+                    <div class="p-2 text-primary font-weight-bold">الدراسة:</div>
+                    <div class="p-2 bd-highlight">
+                        <select class="form-control" name="" id="" [(ngModel)]="study" (change)="sf()">
+                            <option value="0"></option>
+                            <option value="صباحي">صباحي</option>
+                            <option value="مسائي">مسائي</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-row bd-highlight mb-3">
+                    <div class="p-2 text-primary font-weight-bold">النظام:</div>
+                    <div class="p-2 bd-highlight">
+                        <select class="form-control" name="" id="" [(ngModel)]="system" (change)="sysch()">
+                            <option *ngFor="let s of systems; let i = index" value="{{i}}">{{s.name}}</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-row bd-highlight mb-3">
+                    <div class="p-2 text-primary font-weight-bold">الدور:</div>
+                    <div class="p-2 bd-highlight">
+                        <select class="form-control" name="" id="" [(ngModel)]="trial" (change)="trialch()" *ngIf="system">
+                            <option *ngFor="let t of systems[system].trial; let i = index" value="{{t}}">{{t}}</option>
+                        </select>
+                    </div>
+                  </div>
+                  <span class="navbar-text text-danger" style="cursor: pointer" (click)="addnewexam()" title="اضف امتحان جديد"  data-toggle="tooltip" data-placement="bottom">
+                    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
+                        <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
+                    </svg>
+                  </span>
+                  <button class="btn btn-sm btn-primary" title="حفظ الجدول بصيغة ملف اكسل" (click)="save()">Save xlsx</button>
+        </div>
+    </nav>
+    <table class="table table-bordered table-responsive">
+        <thead class="thead-dark">
+            <tr>
+                <th class="text-center" scope="col">#</th>
+                <th class="text-center">التاريخ</th>
+                <th class="text-center">اليوم</th>
+                <th class="text-center">الدراسة</th>
+                <th class="text-center">النظام</th>
+                <th class="text-center">الدور</th>
+                <th class="text-center">المرحلة الأولى</th>
+                <th class="text-center">المرحلة الثانية</th>
+                <th class="text-center">المرحلة الثالثة</th>
+                <th class="text-center">المرحلة الرابعة</th>
+                <th class="text-center">المرحلة الخامسة</th>
+                <th class="text-center">المرحلة السادسة</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let exam of exams; let i = index" class="text-primary text-center" style="cursor: pointer;">
+                <th scope="row" [ngClass]="{'text-warning text-dark': exam.study == 'مسائي', 'text-primary text-white': exam.study == 'صباحي'}">{{i+1}}</th>
+                <td scope="row" [ngClass]="{'text-warning text-dark': exam.study == 'مسائي', 'text-primary text-white': exam.study == 'صباحي'}">{{exam.date}}</td>
+                <td scope="row" [ngClass]="{'text-warning text-dark': exam.study == 'مسائي', 'text-primary text-white': exam.study == 'صباحي'}">{{exam.sday}}</td>
+                <td scope="row" [ngClass]="{'text-warning text-dark': exam.study == 'مسائي', 'text-primary text-white': exam.study == 'صباحي'}">{{exam.study}}</td>
+                <td scope="row" [ngClass]="{'text-warning text-dark': exam.study == 'مسائي', 'text-primary text-white': exam.study == 'صباحي'}">{{exam.system}}</td>
+                <td scope="row" [ngClass]="{'text-warning text-dark': exam.study == 'مسائي', 'text-primary text-white': exam.study == 'صباحي'}">{{exam.trial}}</td>
+                <td scope="row" [ngClass]="{'text-warning text-dark': exam.study == 'مسائي', 'text-primary text-white': exam.study == 'صباحي'}"><span  [ngClass]="{'text-warning': exam.study == 'مسائي'}"><span *ngFor="let e of exam.stage2[1]" class="mx-2">{{e}}</span></span></td>
+                <td scope="row" [ngClass]="{'text-warning text-dark': exam.study == 'مسائي', 'text-primary text-white': exam.study == 'صباحي'}"><span  [ngClass]="{'text-warning': exam.study == 'مسائي'}"><span *ngFor="let e of exam.stage2[2]" class="mx-2">{{e}}</span></span></td>
+                <td scope="row" [ngClass]="{'text-warning text-dark': exam.study == 'مسائي', 'text-primary text-white': exam.study == 'صباحي'}"><span  [ngClass]="{'text-warning': exam.study == 'مسائي'}"><span *ngFor="let e of exam.stage2[3]" class="mx-2">{{e}}</span></span></td>
+                <td scope="row" [ngClass]="{'text-warning text-dark': exam.study == 'مسائي', 'text-primary text-white': exam.study == 'صباحي'}"><span  [ngClass]="{'text-warning': exam.study == 'مسائي'}"><span *ngFor="let e of exam.stage2[4]" class="mx-2">{{e}}</span></span></td>
+                <td scope="row" [ngClass]="{'text-warning text-dark': exam.study == 'مسائي', 'text-primary text-white': exam.study == 'صباحي'}"><span  [ngClass]="{'text-warning': exam.study == 'مسائي'}"><span *ngFor="let e of exam.stage2[5]" class="mx-2">{{e}}</span></span></td>
+                <td scope="row" [ngClass]="{'text-warning text-dark': exam.study == 'مسائي', 'text-primary text-white': exam.study == 'صباحي'}"><span  [ngClass]="{'text-warning': exam.study == 'مسائي'}"><span *ngFor="let e of exam.stage2[6]" class="mx-2">{{e}}</span></span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

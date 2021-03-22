@@ -1,0 +1,79 @@
+<div style="font-family: Arial, Helvetica, sans-serif;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+          </ul>
+          <button class="btn btn-sm btn-info" title="حفظ في ملف اكسل" (click)="savefile()" >save</button>
+          <span class="spacer"></span>
+          <button class="btn btn-sm btn-info" (click)="rf()" >x</button>
+          <input type="date" class="text-center" name="examdate" id="examdate" [(ngModel)]="curdate" (change)="getexams()">
+          <span class="text-primary font-weight-bold ml-2">:تاريخ الامتحان</span>
+          <span class="spacer"></span>
+          <div class="btn-group" role="group" aria-label="Basic example" style="direction: ltr;">
+            <button type="button" class="btn btn-danger" (click)="sortf('المرحلة السادسة')">6</button>
+            <button type="button" class="btn btn-warning" (click)="sortf('المرحلة الخامسة')">5</button>
+            <button type="button" class="btn btn-success" (click)="sortf('المرحلة الرابعة')">4</button>
+            <button type="button" class="btn btn-primary" (click)="sortf('المرحلة الثالثة')">3</button>
+            <button type="button" class="btn btn-secondary" (click)="sortf('المرحلة الثانية')">2</button>
+            <button type="button" class="btn btn-info" (click)="sortf('المرحلة الأولى')">1</button>
+          </div>
+          <div class="btn-group" role="group" aria-label="Basic example" style="direction: ltr;">
+            <button type="button" class="btn btn-secondary" (click)="sortf('الدكتوراه')">الدكتوراه</button>
+            <button type="button" class="btn btn-info" (click)="sortf('الماجستير')">الماجستير</button>
+          </div>
+          <span class="spacer"></span>
+          <span class="navbar-text text-danger" style="cursor: pointer" (click)="addnewexam()" title="اضف امتحان جديد"  data-toggle="tooltip" data-placement="bottom">
+            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
+                <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
+            </svg>
+          </span>
+        </div>
+    </nav>
+    <div style="direction: rtl; text-align: right;">
+        <table class="table table-bordered table-responsive">
+            <thead class="thead-dark">
+              <tr class="text-warning">
+                <th class="text-center" scope="col">#</th>
+                <th class="text-center" scope="col">الدراسة</th>
+                <th class="text-center" scope="col">المرحلة</th>
+                <th class="text-center" scope="col">المادة</th>
+                <th class="text-center" scope="col">النظام</th>
+                <th class="text-center" scope="col">الدور</th>
+                <th class="text-center" scope="col">المدرس</th>
+                <th class="text-center" scope="col">التاريخ</th>
+                <th class="text-center" scope="col">الوقت</th>
+                <th class="text-center" scope="col">الزمن</th>
+                <th class="text-center" scope="col">منصة الامتحان</th>
+                <th class="text-center" scope="col">منصة المتابعة</th>
+                <th class="text-center" scope="col">رابط المتابعة</th>
+                <th class="text-center" scope="col">الطلبة المشمولين</th>
+                <th class="text-center" scope="col">الطلبة المشاركين</th>
+                <th class="text-center" scope="col">الغياب</th>
+                <th class="text-center" scope="col">المراقبون</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let exam of exams; let i = index" class="text-primary text-center" style="cursor: pointer;" (click)="editexam(exam)">
+                <th scope="row">{{i+1}}</th>
+                <td>{{exam.study}}</td>
+                <td>{{exam.stage}}</td>
+                <td>{{exam.material}}</td>
+                <td>{{exam.system}}</td>
+                <td>{{exam.trial}}</td>
+                <td>{{exam.teacher}}</td>
+                <td>{{exam.date}}</td>
+                <td>{{exam.time}}</td>
+                <td>{{exam.long}}</td>
+                <td>{{exam.classroom}}</td>
+                <td>{{exam.platform}}</td>
+                <td>{{exam.meeting}}</td>
+                <td>{{exam.included}}</td>
+                <td>{{exam.inrule}}</td>
+                <td>{{exam.abs}}</td>
+                <td>{{exam.mq}} - {{exam.qq}}</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

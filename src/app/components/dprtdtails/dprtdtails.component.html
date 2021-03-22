@@ -1,0 +1,84 @@
+<div style="direction: rtl; text-align: right;">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="collapse navbar-collapse" id="navbarText">
+      <span class="text-danger"> {{seldprt.name}} </span>
+      <ul class="navbar-nav mr-auto">
+      </ul>
+      <span class="spacer"></span>
+      
+      <span class="spacer"></span>
+      <span class="navbar-text text-danger" style="cursor: pointer" (click)="back()" title="رجوع"  data-toggle="tooltip" data-placement="bottom">
+        Back
+      </span>
+    </div>
+  </nav>
+    <div style="direction: rtl; text-align: right;">
+        <table class="table table-bordered table-responsive">
+            <thead>
+              <tr>
+                <th colspan="9" class="text-center">
+                    <h6>جمهورية العراق</h6>
+                    <h6>وزارة التعليم العالي والبحث العلمي</h6>
+                    <h6>جامعة البصرة</h6>
+                  </th>
+                <th colspan="3">
+                    <div class="d-flex justify-content-center">
+                        <img src="../../../assets/universitylogo.jpg" style="width: 100px; height: 100px; margin: auto;" alt="">
+                    </div>
+                </th>
+                <th colspan="6" class="text-center">
+                    <h6>Republic of Iraq</h6>
+                    <h6>Ministry of Higher Education</h6>
+                    <h6>& Scientific Research</h6>
+                    <h6>University of Basrah</h6>
+                </th>
+            </tr>
+            <tr class="text-center text-info font-weight-bold">
+                <th colspan="18">موقف الامتحان النهائي للعام الدراسي <span style="direction: rtl;">{{examay}}</span></th>
+            </tr>
+              <tr class="text-dark text-center">
+                <th scope="col">#</th>
+                <th scope="col">الدراسة</th>
+                <th scope="col">المرحلة</th>
+                <th scope="col">المادة</th>
+                <th scope="col">النظام</th>
+                <th scope="col">الدور</th>
+                <th scope="col">المدرس</th>
+                <th scope="col">التاريخ</th>
+                <th scope="col">الوقت</th>
+                <th scope="col">الزمن</th>
+                <th scope="col">منصة الامتحان</th>
+                <th scope="col">منصة المتابعة</th>
+                <th scope="col">رابط المتابعة</th>
+                <th scope="col">مشرف القاعة</th>
+                <th scope="col">المراقبون</th>
+                <th scope="col">الطلبة المشمولين</th>
+                <th scope="col">الطلبة المشاركين</th>
+                <th scope="col">الغياب</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let exam of exams; let i = index" class="text-info" style="cursor: pointer; text-align: center;">
+                <th [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}" scope="row">{{i+1}}</th>
+                <th [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.study}}</th>
+                <th [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.stage}}</th>
+                <th [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.material}}</th>
+                <th [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.system}}</th>
+                <th [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.trial}}</th>
+                <th [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.teacher}}</th>
+                <th [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.date}}</th>
+                <th [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.time}}</th>
+                <th [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.long}}</th>
+                <th [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.classroom}}</th>
+                <th [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.platform}}</th>
+                <th [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}" ><a *ngFor="let link of exam.links" href="{{link}}" style="display: block;" target="_blank">{{link}}</a></th>
+                <th [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.mq}}</th>
+                <th [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.qq}}</th>
+                <th [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.included}}</th>
+                <th [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.inrule}}</th>
+                <th [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.abs}}</th>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

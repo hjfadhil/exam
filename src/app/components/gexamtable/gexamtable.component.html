@@ -1,0 +1,99 @@
+<div style="font-family: Arial, Helvetica, sans-serif; direction: rtl; text-align: right;">
+        <div class="d-flex justify-content-around" id="navbarText">
+            <div class="btn-group mx-4" style="direction: ltr;" role="group" aria-label="...">
+                <button type="button" class="btn btn-secondary" (click)="all()">الكل</button>
+                <button type="button" class="btn btn-primary" (click)="yet()">لاحقا</button>
+                <button type="button" class="btn btn-success" (click)="now()">حاليا</button>
+                <button type="button" class="btn btn-warning" (click)="done()">انتهت</button>
+            </div>
+            <div class="btn-group btn-group mx-4" style="direction: ltr;" role="group" aria-label="...">
+                <button type="button" class="btn btn-info" style="cursor: pointer;" (click)="rf()"><span>حذف_الفلتر</span></button>
+            </div>
+                <span class="spacer"></span>
+                <div class="input-group mx-4" style="direction: ltr;">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text" id="btnGroupAddon">تاريخ الامتحان</div>
+                    </div>
+                    <input type="date" class="form-control text-center" name="examdate" id="examdate" [(ngModel)]="curdate" (change)="filterexam()" placeholder="تاريخ الامتحان" aria-label="Input group example" aria-describedby="btnGroupAddon">
+                    <div class="input-group-append">
+                        <button class="btn btn-sm btn-danger" (click)="rdf()">X</button>
+                      </div>
+                </div>
+                <span class="spacer"></span>
+                <div class="input-group mx-4" style="direction: ltr;">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text" id="btnGroupAddon">الدراسة</div>
+                    </div>
+                    <select class="form-control text-center" name="" id="" [(ngModel)]="study" (change)="sf()">
+                        <option value="0"></option>
+                        <option class="text-center" value="صباحي">صباحي</option>
+                        <option value="مسائي">مسائي</option>
+                    </select>
+                </div>
+        </div>
+    <table class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th colspan="8" class="text-center">
+                    <h6>جمهورية العراق</h6>
+                    <h6>وزارة التعليم العالي والبحث العلمي</h6>
+                    <h6>جامعة البصرة</h6>
+                  </th>
+                <th colspan="4">
+                    <div class="d-flex justify-content-center">
+                        <img src="../../../assets/universitylogo.jpg" style="width: 100px; height: 100px; margin: auto;" alt="">
+                    </div>
+                </th>
+                <th colspan="5" class="text-center">
+                    <h6>Republic of Iraq</h6>
+                    <h6>Ministry of Higher Education</h6>
+                    <h6>& Scientific Research</h6>
+                    <h6>University of Basrah</h6>
+                </th>
+            </tr>
+            <tr class="text-center text-info font-weight-bold" *ngIf="examname && examay">
+                <th colspan="17">جدول الامتحان النهائي للعام الدراسي <span style="direction: rtl;">{{examay}}</span></th>
+            </tr>
+            <tr>
+                <th class="text-center" scope="col">#</th>
+                <th class="text-center">الكلية</th>
+                <th class="text-center">القسم</th>
+                <th class="text-center">الدراسة</th>
+                <th class="text-center">النظام</th>
+                <th class="text-center">الدور</th>
+                <th class="text-center">التاريخ</th>
+                <th class="text-center">اليوم</th>
+                <th class="text-center">المرحلة الأولى</th>
+                <th class="text-center">المرحلة الثانية</th>
+                <th class="text-center">المرحلة الثالثة</th>
+                <th class="text-center">المرحلة الرابعة</th>
+                <th class="text-center">المرحلة الخامسة</th>
+                <th class="text-center">المرحلة السادسة</th>
+                <th class="text-center">الدبلوم العالي</th>
+                <th class="text-center">الماجستير</th>
+                <th class="text-center">الدكتوراه</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let exam of exams; let i = index" class="text-primary text-center font-weight-bold" style="cursor: pointer;">
+                <th scope="row" class="text-right"  [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{i+1}}</th>
+                <td scope="row" class="text-right"  [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.college}}</td>
+                <td scope="row" class="text-right"  [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.department}}</td>
+                <td scope="row" class="text-right"  [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.study}}</td>
+                <td scope="row" class="text-right"  [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.system}}</td>
+                <td scope="row" class="text-right"  [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.trial}}</td>
+                <td scope="row" class="text-right"  [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.date}}</td>
+                <td scope="row" class="text-right"  [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}">{{exam.sday}}</td>
+                <td scope="row" class="text-right"  [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}"><span><span *ngFor="let e of exam.stage[1]" class="mx-2">{{e}}</span></span></td>
+                <td scope="row" class="text-right"  [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}"><span><span *ngFor="let e of exam.stage[2]" class="mx-2">{{e}}</span></span></td>
+                <td scope="row" class="text-right"  [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}"><span><span *ngFor="let e of exam.stage[3]" class="mx-2">{{e}}</span></span></td>
+                <td scope="row" class="text-right"  [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}"><span><span *ngFor="let e of exam.stage[4]" class="mx-2">{{e}}</span></span></td>
+                <td scope="row" class="text-right"  [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}"><span><span *ngFor="let e of exam.stage[5]" class="mx-2">{{e}}</span></span></td>
+                <td scope="row" class="text-right"  [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}"><span><span *ngFor="let e of exam.stage[6]" class="mx-2">{{e}}</span></span></td>
+                <td scope="row" class="text-right"  [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}"><span><span *ngFor="let e of exam.stage[7]" class="mx-2">{{e}}</span></span></td>
+                <td scope="row" class="text-right"  [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}"><span><span *ngFor="let e of exam.stage[8]" class="mx-2">{{e}}</span></span></td>
+                <td scope="row" class="text-right"  [ngClass]="{'text-primary': exam.status == 1, 'text-success': exam.status == 2, 'text-warning': exam.status == 3}"><span><span *ngFor="let e of exam.stage[9]" class="mx-2">{{e}}</span></span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

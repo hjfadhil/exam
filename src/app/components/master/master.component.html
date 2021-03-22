@@ -1,0 +1,51 @@
+<div style="direction: rtl; text-align: right;">
+    <div class="d-flex justify-content-around" id="navbarText">
+      <input type="date" name="curdate" id="curdate" [formControl]="curdate" (change)="seldate()" class="text-center text-primary font-weight-bold form-control">
+      <select name="" id="" class="form-control" [(ngModel)]="selayr" (change)="selay()">
+        <option value="{{ay.id}}" *ngFor="let ay of academicyears">{{ay.id}}</option>
+      </select>
+      <span class="spacer"></span>
+      <select name="" id="" class="form-control" [(ngModel)]="selex" (change)="selexf()">
+        <option value="{{ex.id}}" *ngFor="let ex of exs">{{ex.name}}</option>
+      </select>
+    </div>
+    <table class="table table-striped table-striped table-responsive">
+        <thead>
+          <tr>
+            <th colspan="2" class="text-center">
+                <h6>جمهورية العراق</h6>
+                <h6>وزارة التعليم العالي والبحث العلمي</h6>
+                <h6>جامعة البصرة</h6>
+              </th>
+            <th colspan="1">
+                <div class="d-flex justify-content-center">
+                    <img src="../../../assets/universitylogo.jpg" style="width: 100px; height: 100px; margin: auto;" alt="">
+                </div>
+            </th>
+            <th colspan="1" class="text-center">
+                <h6>Republic of Iraq</h6>
+                <h6>Ministry of Higher Education</h6>
+                <h6>& Scientific Research</h6>
+                <h6>University of Basrah</h6>
+            </th>
+        </tr>
+        <tr class="text-center text-info font-weight-bold">
+            <th colspan="12">موقف الامتحان {{examname}} للعام الدراسي <span style="direction: rtl;">{{examay}}</span></th>
+        </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">الكلية</th>
+            <th scope="col">عدد الاقسام</th>
+            <th scope="col">عدد الامتحانات</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let college of colleges; let i = index" style="cursor: pointer;" (click)="dprtexams(college)">
+              <td>{{i+1}}</td>
+            <th scope="row">{{college.namear}}</th>
+            <td scope="row" class="text-center text-info font-weight-bold" *ngIf="college.dprts">{{college.dprts.length}}</td>
+            <td scope="row" class="text-center text-warning font-weight-bold" *ngIf="college.dprts">{{college.exams.length}}</td>
+          </tr>
+        </tbody>
+    </table>
+</div>

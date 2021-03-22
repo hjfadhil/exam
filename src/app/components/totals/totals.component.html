@@ -1,0 +1,74 @@
+<div style="direction: rtl; text-align: right;" *ngIf="exams.length > 0">
+  <div class="d-flex justify-content-around" id="navbarText">
+    <button class="btn btn-primary" (click)="save()" >Save xlsx</button>
+  </div>
+  <table class="table table-bordered table-responsive">
+    <thead>
+      <tr>
+          <th colspan="4" class="text-center">
+              <h6>جمهورية العراق</h6>
+              <h6>وزارة التعليم العالي والبحث العلمي</h6>
+              <h6>جامعة البصرة</h6>
+            </th>
+          <th colspan="4">
+              <div class="d-flex justify-content-center">
+                  <img src="../../../assets/universitylogo.jpg" style="width: 100px; height: 100px; margin: auto;" alt="">
+              </div>
+          </th>
+          <th colspan="4" class="text-center">
+              <h6>Republic of Iraq</h6>
+              <h6>Ministry of Higher Education</h6>
+              <h6>& Scientific Research</h6>
+              <h6>University of Basrah</h6>
+          </th>
+      </tr>
+      <tr class="bg-dark text-white">
+          <th scope="col">#</th>
+          <th scope="col">الكلية</th>
+          <th scope="col">الدراسة</th>
+          <th scope="col">المجموع</th>
+          <th scope="col">المجموع</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let c of exams4; let i = index">
+        <tr class="text-info font-weight-bold" style="cursor: pointer; text-align: center;">
+          <th scope="row" rowspan="2">{{i+1}}</th>
+          <td  rowspan="2">{{c.col}}</td>
+          <td >صباحي</td>
+          <td >{{c[0]['صباحي']}}</td>
+          <td  rowspan="2">{{c[1]}}</td>
+        </tr>
+        <tr class="text-info font-weight-bold" style="cursor: pointer; text-align: center;">
+          <td >مسائي</td>
+          <td >{{c[0]['مسائي']}}</td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr class="text-info font-weight-bold" style="cursor: pointer; text-align: center;">
+          <td colspan="2">المجموع</td>
+            <td colspan="3">{{total2}}</td>
+        </tr>
+    </tbody>
+</table>
+<table class="table table-bordered table-responsive">
+  <tr>
+    <th scope="col">#</th>
+    <th>الدراسة</th>
+    <th>المجموع</th>
+  </tr>
+  <tr class="text-info font-weight-bold" style="cursor: pointer; text-align: center;">
+    <td>1</td>
+    <td>الصباحي</td>
+    <td>{{exams5[0]}}</td>
+  </tr>
+  <tr class="text-info font-weight-bold" style="cursor: pointer; text-align: center;">
+    <td>2</td>
+    <td>المسائي</td>
+    <td>{{exams5[1]}}</td>
+  </tr>
+  <tr class="text-info font-weight-bold" style="cursor: pointer; text-align: center;">
+    <td colspan="2">المجموع</td>
+    <td>{{exams5[0]+exams5[1]}}</td>
+  </tr>
+</table>
+</div>

@@ -1,0 +1,17 @@
+{
+  "targets": {
+    "ubafs-efd6f": {
+      "hosting": {
+        "EXAM": [
+          "exam-ubafs"
+        ],
+        "exam": [
+          "exam-ubafs"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "exam-ubafs"
+  }
+}

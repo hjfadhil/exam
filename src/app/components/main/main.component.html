@@ -1,0 +1,54 @@
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <a class="navbar-brand text-danger">Exam</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/login']" routerLinkActive="router-link-active" (click)="logcf()" *ngIf="!uuser">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="router-link-active" style="cursor: pointer;" (click)="logout()" *ngIf="uuser">Logout</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Options
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngIf="uuser">
+                <a class="dropdown-item" [routerLink]="['/academicyears']" routerLinkActive="router-link-active" *ngIf="email != 'admin@gmail.com'">العام الدراسي</a>
+                <a class="dropdown-item" [routerLink]="['/examtable']" routerLinkActive="router-link-active" *ngIf="email != 'admin@gmail.com' && examay && examname">جدول الامتحانات</a>
+                <a class="dropdown-item" [routerLink]="['/examinfo']" routerLinkActive="router-link-active" *ngIf="email != 'admin@gmail.com' && examay && examname">الامتحانات</a>
+                <a class="dropdown-item" [routerLink]="['/master']" routerLinkActive="router-link-active" *ngIf="email == 'admin@gmail.com'">Master</a>
+                <a class="dropdown-item" [routerLink]="['/gexamtable']" routerLinkActive="router-link-active" *ngIf="email == 'admin@gmail.com'">جدول الامتحانات</a>
+                <a class="dropdown-item" [routerLink]="['/examtable2']" routerLinkActive="router-link-active" *ngIf="email == 'admin@gmail.com'">2جدول الامتحانات</a>
+                <a class="dropdown-item" [routerLink]="['/report1']" routerLinkActive="router-link-active" *ngIf="email == 'admin@gmail.com'">موقف اعداد</a>
+                <a class="dropdown-item" [routerLink]="['/totals']" routerLinkActive="router-link-active" *ngIf="email == 'admin@gmail.com'">مجموع</a>
+                <a class="dropdown-item" [routerLink]="['/statistics']" routerLinkActive="router-link-active" *ngIf="email == 'admin@gmail.com'">احصائية</a>
+                <a class="dropdown-item" hidden *ngIf="email == 'admin@gmail.com'" (click)="movedata()">نقل بيانات</a>
+                <a class="dropdown-item" hidden [routerLink]="['/createaccount']" routerLinkActive="router-link-active"  *ngIf="email == 'admin@gmail.com'">مستخدم جديد</a>
+                <a class="dropdown-item" hidden *ngIf="email == 'admin@gmail.com'" (click)="updateprofile()">تعديل بيانات مستخدم</a>
+                <a class="dropdown-item" hidden *ngIf="email == 'admin@gmail.com'" (click)="dprts()">اقسام كلية</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="dropdown-item" hidden *ngIf="email == 'admin@gmail.com'" [routerLink]="['/data']" routerLinkActive="router-link-active" >نقل بيانات</a>
+            </li>
+        </ul>
+        <div style="margin: auto; direction: rtl; text-align: right;" *ngIf="cn">
+          <span class="text-danger">العام الدراسي {{examay}}- الامتحان {{examname}}</span>
+        </div>
+        <div class=" float-right" *ngIf="cn">
+            <span class="text-primary">{{collegename}}-{{dprtname}}</span>
+        </div>
+        </div>
+      </nav>
+      
+    <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,104 @@
+<div class="row" style="direction: rtl; text-align: right; padding: 5px; font-family: Arial, Helvetica, sans-serif; font-size: large;">
+    <div class="col-sm-4">
+        <form class="needs-validation" novalidate>
+            <div class="form-group">
+                <div class="d-flex justify-content-between">
+                    <label for="material" class="text-primary">اسم المادة</label>
+                    <button type="button" class="btn btn-warning" (click)="cancel()">Cancel</button>
+                </div>
+                <input type="text" class="form-control text-center" [formControl]="material" id="material" aria-describedby="emailHelp" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="teacher" class="text-primary">مدرس المادة</label>
+                <input type="text"  [formControl]="teacher" class="form-control text-center" id="teacher" required>
+            </div>
+            <div class="form-group">
+              <label for="study" class="text-primary">الدراسة</label>
+              <select class="form-control" [(formControl)]="study" id="study">
+                <option value="صباحي">صباحي</option>
+                <option value="مسائي">مسائي</option>
+              </select>
+            </div>
+            <div class="form-group">
+                <label for="system" class="text-primary">النظام</label>
+                <select class="form-control" [(ngModel)]="system" id="system" name="system">
+                    <option *ngFor="let s of systems; let i = index" value="{{i}}">{{s.name}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="study" class="text-primary">الدور</label>
+                <select class="form-control text-center" [(ngModel)]="trial" name="trialid" id="trial" *ngIf="systems.length > 0">
+                  <option *ngFor="let t of systems[system].trial">{{t}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date" class="text-primary">التاريخ</label>
+                <input type="date" [formControl]="date" class="form-control text-center" id="date" required>
+            </div>
+            <div class="form-group">
+                <label for="time" class="text-primary">الوقت</label>
+                <input type="time" [formControl]="time" class="form-control text-center" id="time" required>
+            </div>
+            <div class="form-group">
+                <label for="long" class="text-primary">المدة-ساعة</label>
+                <input type="number" [formControl]="long" class="form-control text-center" id="long" required>
+            </div>
+            <div class="form-group">
+                <label for="stage" class="text-primary">المرحلة</label>
+                <select class="form-control" [formControl]="stage" id="stage">
+                    <option value="المرحلة الأولى">المرحلة الأولى</option>
+                    <option value="المرحلة الثانية">المرحلة الثانية</option>
+                    <option value="المرحلة الثالثة">المرحلة الثالثة</option>
+                    <option value="المرحلة الرابعة">المرحلة الرابعة</option>
+                    <option value="المرحلة الخامسة">المرحلة الخامسة</option>
+                    <option value="المرحلة السادسة">المرحلة السادسة</option>
+                    <option value="الدبلوم العالي">الدبلوم العالي</option>
+                    <option value="الماجستير">الماجستير</option>
+                    <option value="الدكتوراه">الدكتوراه</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="classroom" class="text-primary">منصة الامتحان</label>
+                <input type="text" [formControl]="classroom" class="form-control text-center" id="classroom" required>
+            </div>
+            <div class="form-group">
+                <label for="platform" class="text-primary">منصة المتابعة</label>
+                <input type="text" [formControl]="platform" class="form-control text-center" id="platform" required>
+            </div>
+            <div class="form-group">
+                <label for="meeting" class="text-primary">رابط المتابعة</label>
+                <input type="text" [formControl]="meeting" class="form-control text-center" id="meeting" required>
+            </div>
+            <div class="form-group">
+                <label for="included" class="text-primary">عدد الطلبة المشمولين</label>
+                <input type="number" [formControl]="included" class="form-control text-center" id="included" required>
+            </div>
+            <div class="form-group">
+                <label for="inrule" class="text-primary">عدد الطلبة المشاركين</label>
+                <input type="number" [formControl]="inrule" class="form-control text-center" id="inrule" required>
+            </div>
+            <div class="form-group">
+                <label for="abs" class="text-primary">عدد الطلبة الغياب</label>
+                <input type="number" [formControl]="abs" class="form-control text-center" id="abs" required>
+            </div>
+            <div class="form-group">
+                <label for="meeting" class="text-primary">مشرف القاعة</label>
+                <input type="text" [formControl]="mq" class="form-control text-center" id="mq">
+            </div>
+            <div class="form-group">
+                <label for="meeting" class="text-primary">المراقبون</label>
+                <input type="text" [formControl]="qq" class="form-control text-center" id="qq">
+            </div>
+        </form>
+        <div class="d-flex justify-content-around">
+            <button type="button" style="margin: auto;" class="btn btn-primary" (click)="update()">Update</button>
+            <button type="button" style="margin: auto;" class="btn btn-warning" (click)="cancel()">Cancel</button>
+            <button type="button" style="margin: auto;" class="btn btn-danger" (click)="delete()">Delete</button>
+        </div>
+    </div>
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4"></div>
+</div>

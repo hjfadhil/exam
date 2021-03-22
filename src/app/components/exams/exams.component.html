@@ -1,0 +1,10 @@
+<div class="row" style="direction: rtl; text-align: right;">
+    <div class="col-sm-4">
+        <div class="list-group">
+            <a (click)="examf(exam.id)" [ngClass]="{active: activeexam == exam.id}" 
+            *ngFor="let exam of exams" style="cursor: pointer;" class="list-group-item list-group-item-action">{{exam.name}}</a>
+        </div>
+    </div>
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4"></div>
+</div>

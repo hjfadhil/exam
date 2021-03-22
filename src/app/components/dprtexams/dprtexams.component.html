@@ -1,0 +1,30 @@
+<div style="direction: rtl; text-align: right; margin-left: 20px; margin-right: 20px;">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+      </ul>
+      <span class="navbar-text text-danger" style="cursor: pointer" (click)="back()" title="رجوع"  data-toggle="tooltip" data-placement="bottom">
+        Back
+      </span>
+    </div>
+  </nav>
+    <div class="d-flex justify-content-center">
+        <span class="text-danger">{{college.namear}}</span>
+    </div>
+    <table class="table table-striped table-striped table-responsive">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">القسم</th>
+            <th scope="col">عدد الامتحانات</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dprt of departments; let i = index" style="cursor: pointer;" (click)="dprtexams(dprt)">
+              <td>{{i+1}}</td>
+            <th scope="row">{{dprt.name}}</th>
+            <td scope="row" class="text-center text-danger">{{dexams[dprt.id].length}}</td>
+          </tr>
+        </tbody>
+    </table>
+</div>

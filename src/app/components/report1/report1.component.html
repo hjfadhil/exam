@@ -1,0 +1,99 @@
+<div style="direction: rtl; text-align: right;">
+      <div class="d-flex justify-content-around" id="navbarText">
+        <div class="btn-group" role="group" aria-label="Basic example" style="direction: ltr;">
+          <button type="button" class="btn btn-primary" (click)="rprt1()">تقرير تفصيلي</button>
+          <button type="button" class="btn btn-success" (click)="rprt2()">تقرير كلي</button>
+          <button type="button" class="btn btn-danger" (click)="rprt4()">تقرير الروابط</button>
+        </div>
+        <div>
+          <button class="btn btn-warning" (click)="allexams()" [hidden]="hideallexams">جميع الأمتحانات</button>
+        </div>
+        <div>
+          <button class="btn btn-sm btn-danger" (click)="rf()" hidden title="الغاء الفلتر">x</button>
+          <input type="date" name="curdate" id="curdate" [(ngModel)]="curdate" (change)="seldate()" class="text-center text-primary font-weight-bold">
+          <button class="btn btn-sm btn-warning" (click)="rf2()" hidden title="الفلتر">f</button>
+        </div>
+        <div class="form-group">
+          <label for="system" class="text-primary" style="margin-left: 10px;">النظام:</label>
+          <select [(ngModel)]="system" id="system" name="system" (change)="syschng()">
+              <option *ngFor="let s of systems; let i = index" value="{{i}}">{{s.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+            <label for="study" class="text-primary" style="margin-left: 10px;">الدور:</label>
+            <select class="text-center" [(ngModel)]="trial" name="trialid" id="trial" *ngIf="system">
+              <option *ngFor="let t of systems[system].trial">{{t}}</option>
+            </select>
+        </div>
+        <div>
+          <span class="navbar-text text-danger" style="cursor: pointer" (click)="back()" title="رجوع"  data-toggle="tooltip" data-placement="bottom">
+            Back
+          </span>
+        </div>
+      </div>
+      <div style="direction: rtl; text-align: right;">
+          <table class="table table-bordered table-responsive">
+              <thead>
+                <tr>
+                    <th colspan="5" class="text-center">
+                        <h6>جمهورية العراق</h6>
+                        <h6>وزارة التعليم العالي والبحث العلمي</h6>
+                        <h6>جامعة البصرة</h6>
+                      </th>
+                    <th colspan="4">
+                        <div class="d-flex justify-content-center">
+                            <img src="../../../assets/universitylogo.jpg" style="width: 100px; height: 100px; margin: auto;" alt="">
+                        </div>
+                    </th>
+                    <th colspan="5" class="text-center">
+                        <h6>Republic of Iraq</h6>
+                        <h6>Ministry of Higher Education</h6>
+                        <h6>& Scientific Research</h6>
+                        <h6>University of Basrah</h6>
+                    </th>
+                </tr>
+                <tr class="bg-dark text-white">
+                    <th scope="col">#</th>
+                    <th scope="col">الكلية</th>
+                    <th scope="col">القسم</th>
+                    <th scope="col">الدراسة</th>
+                    <th scope="col">المرحلة</th>
+                    <th scope="col">النظام</th>
+                    <th scope="col">الدور</th>
+                    <th scope="col">المادة</th>
+                    <th scope="col">التاريخ</th>
+                    <th scope="col">منصة الامتحان</th>
+                    <th scope="col">الطلبة المشمولين</th>
+                    <th scope="col">الطلبة المشاركين</th>
+                    <th scope="col">الغياب</th>
+                    <th scope="col">مصادقة</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let exam of exams; let i = index" class="text-info font-weight-bold" style="cursor: pointer; text-align: center;">
+                  <th scope="row" [ngClass]="{'text-info': exam.study == 'صباحي', 'text-warning': exam.study == 'مسائي'}">{{i+1}}</th>
+                  <td [ngClass]="{'text-info': exam.exam.study == 'صباحي', 'text-warning': exam.exam.study == 'مسائي'}">{{exam.colege}}</td>
+                  <td [ngClass]="{'text-info': exam.exam.study == 'صباحي', 'text-warning': exam.exam.study == 'مسائي'}">{{exam.dpartment.name}}</td>
+                  <td [ngClass]="{'text-info': exam.exam.study == 'صباحي', 'text-warning': exam.exam.study == 'مسائي'}">{{exam.exam.study}}</td>
+                  <td [ngClass]="{'text-info': exam.exam.study == 'صباحي', 'text-warning': exam.exam.study == 'مسائي'}">{{exam.exam.stage}}</td>
+                  <td [ngClass]="{'text-info': exam.exam.study == 'صباحي', 'text-warning': exam.exam.study == 'مسائي'}">{{exam.exam.system}}</td>
+                  <td [ngClass]="{'text-info': exam.exam.study == 'صباحي', 'text-warning': exam.exam.study == 'مسائي'}">{{exam.exam.trial}}</td>
+                  <td [ngClass]="{'text-info': exam.exam.study == 'صباحي', 'text-warning': exam.exam.study == 'مسائي'}">{{exam.exam.material}}</td>
+                  <td [ngClass]="{'text-info': exam.exam.study == 'صباحي', 'text-warning': exam.exam.study == 'مسائي'}">{{exam.exam.date}}</td>
+                  <td [ngClass]="{'text-info': exam.exam.study == 'صباحي', 'text-warning': exam.exam.study == 'مسائي'}">{{exam.exam.classroom}}</td>
+                  <td [ngClass]="{'text-info': exam.exam.study == 'صباحي', 'text-warning': exam.exam.study == 'مسائي'}">{{exam.exam.included}}</td>
+                  <td [ngClass]="{'text-info': exam.exam.study == 'صباحي', 'text-warning': exam.exam.study == 'مسائي'}">{{exam.exam.inrule}}</td>
+                  <td [ngClass]="{'text-info': exam.exam.study == 'صباحي', 'text-warning': exam.exam.study == 'مسائي'}">{{exam.exam.abs}}</td>
+                  <td class="text-center"><span *ngIf="!exam.exam.approved" class="text-danger">x</span><span *ngIf="exam.exam.approved" class="text-success">تم</span></td>
+                </tr>
+              </tbody>
+          </table>
+      </div>
+      <div style="direction: rtl; text-align: right;" *ngIf="loading">
+        <div class="d-flex justify-content-center">
+          <span class="text-danger">
+            جاري التحميل
+          </span>
+        </div>
+      </div>
+</div>
